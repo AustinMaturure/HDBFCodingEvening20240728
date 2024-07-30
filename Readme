@@ -5,5 +5,5 @@
 - allows user to send message and gets a automated response
 
 ## Issues
-- Did not fully Implement local storage to access saved messages from local storage
+- Did not fully Implement local storage to access saved messages from local storage, But the messages are being saved just need to be accessed
 - UI is not fully styled 
