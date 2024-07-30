@@ -12,7 +12,7 @@ fetch('/chats.json')
   })
   .catch(error => console.error('Error loading JSON:', error));
 
-// Set up the button click handler
+// button clickt handler
 btnUsername.onclick = function() {
     const username = inputUsername.value;
     localStorage.setItem('username', username);
@@ -35,11 +35,39 @@ btnUsername.onclick = function() {
         const chatCnt = document.getElementById(`chat-cnt-${index}`);
         chatCnt.onclick = function() {
             const chatName = this.dataset.name;
-            container.innerHTML = `<h1>Chat with ${chatName}</h1>
+            container.innerHTML = `<section class="chat"><h1>Chat with ${chatName}</h1>
+            <section class="messages" id="messages">  
             ${chat.messages.map(message => 
-                ` <div class="messageBubble">
-                    <p><strong>${message.sender}:</strong> ${message.message} <small>${new Date(message.timestamp).toLocaleString()}</small></p></div>
-                `).join('')}`;
+                `<div class="message-bubble">
+                    <p><strong>${message.sender}:</strong> ${message.message} <small>${new Date(message.timestamp).toLocaleString()}</small></p>
+                </div>`).join('')}
+                </section>
+                <div class="message-box">
+                    <input type="text" title="message" placeholder="Enter A Message" id="inputMessage">
+                    <button id="btnSendMessage">Enter</button>
+                </div>
+                </section>`;
+
+            const btnSendMessage = document.getElementById('btnSendMessage');
+            const messageInput = document.getElementById('inputMessage');
+
+            btnSendMessage.onclick = function() {
+                const newMessage = {
+                    sender: 'You', 
+                    receiver: chatName,
+                    timestamp: new Date().toISOString(),
+                    message: messageInput.value
+                }
+
+                // Update the chat messages UI
+                const messages = document.getElementById('messages');
+                messages.innerHTML += `<div class="message-bubble">
+                    <p><strong>${newMessage.sender}:</strong> ${newMessage.message} <small>${new Date(newMessage.timestamp).toLocaleString()}</small></p>
+                </div>`;
+
+                // Clear the input field
+                messageInput.value = '';
+            }
         };
     });
 };
