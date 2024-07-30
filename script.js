@@ -15,7 +15,13 @@ fetch('/chats.json')
 // button clickt handler
 btnUsername.onclick = function() {
     const username = inputUsername.value;
-    localStorage.setItem('username', username);
+    localStorage.setItem('username', username);console.log(chats)
+    let storedChats = JSON.parse(localStorage.getItem('chats'));
+    
+    console.log(storedChats)
+   
+   
+
 
     let chatsHTML = '';
     chats.forEach((chat, index) => {
@@ -30,11 +36,13 @@ btnUsername.onclick = function() {
     <section class="chats">
         ${chatsHTML}
     </section>`;
+   
 
     chats.forEach((chat, index) => {
         const chatCnt = document.getElementById(`chat-cnt-${index}`);
         chatCnt.onclick = function() {
             const chatName = this.dataset.name;
+            
             container.innerHTML = `<section class="chat"><h1>Chat with ${chatName}</h1>
             <section class="messages" id="messages">  
             ${chat.messages.map(message => 
@@ -59,14 +67,37 @@ btnUsername.onclick = function() {
                     message: messageInput.value
                 }
 
+                const Recieved = {
+                    sender: chatName, 
+                    receiver: 'You',
+                    timestamp: new Date().toISOString(),
+                    message: 'Thank You For Your Message'
+                }
+
                 // Update the chat messages UI
                 const messages = document.getElementById('messages');
                 messages.innerHTML += `<div class="message-bubble">
                     <p><strong>${newMessage.sender}:</strong> ${newMessage.message} <small>${new Date(newMessage.timestamp).toLocaleString()}</small></p>
+                </div>
+                <div class="message-bubble">
+                    <p><strong>${Recieved.sender}:</strong> ${Recieved.message} <small>${new Date(Recieved.timestamp).toLocaleString()}</small></p>
                 </div>`;
 
                 // Clear the input field
                 messageInput.value = '';
+                const chatsFromStorage = JSON.parse(localStorage.getItem('chats')) || [];
+                const chatIndex = chatsFromStorage.findIndex(c => c.name === chatName);
+    
+    if (chatIndex !== -1) {
+        chatsFromStorage[chatIndex].messages.push(newMessage);
+    } else {
+        chatsFromStorage.push({
+            name: chatName,
+            messages: [newMessage]
+        });
+    }
+    
+    localStorage.setItem('chats', JSON.stringify(chatsFromStorage));
             }
         };
     });

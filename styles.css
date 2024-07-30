@@ -1,6 +1,34 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .chat-cnt{
     border-radius: 22px;
     background-color: aliceblue;
     cursor: pointer;
 }
+ .chat{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100svh;
+ }
 
+ .message-box{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+ }
+#inputMessage{
+    width: 100%;
+}
+
+
+
+button{
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(54, 107, 135);
+    color: white;
+}
