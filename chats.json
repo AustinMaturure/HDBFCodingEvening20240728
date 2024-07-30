@@ -1,0 +1,39 @@
+{
+    "chats": [
+      {
+        "name": "John",
+        "messages": [
+          {
+            "sender": "John",
+            "receiver": "You",
+            "timestamp": "2024-07-18T10:30:00Z",
+            "message": "Hi how are you?"
+          },
+          {
+            "sender": "You",
+            "receiver": "John",
+            "timestamp": "2024-07-18T10:32:00Z",
+            "message": "I'm good"
+          }
+        ]
+      },
+      {
+        "name": "Mom",
+        "messages": [
+          {
+            "sender": "Mom",
+            "receiver": "You",
+            "timestamp": "2024-07-18T11:00:00Z",
+            "message": "Are you planning on working Soon?"
+          },
+          {
+            "sender": "You",
+            "receiver": "Mom",
+            "timestamp": "2024-07-18T11:05:00Z",
+            "message": "Yes BoxFusion is about to hire Me!"
+          }
+        ]
+      }
+    ]
+  }
+  
