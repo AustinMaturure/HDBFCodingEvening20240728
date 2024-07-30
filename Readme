@@ -1,0 +1,9 @@
+## Features
+- Allows Users to Enter Username
+- Displays a list of Users available to Chat
+- Has a chat Page which displays messages
+- allows user to send message and gets a automated response
+
+## Issues
+- Did not fully Implement local storage to access saved messages from local storage
+- UI is not fully styled 
